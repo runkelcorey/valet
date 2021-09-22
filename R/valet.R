@@ -19,8 +19,9 @@ valet <- function(name = NULL, group = F) {
     purrr::map_dfc(~ .x[["v"]]) %>% #bind lists into tibble/data frame
     readr::type_convert() %>% #convert dates to dates, numbers to numbers, etc.
     suppressMessages() %>% #remove diagnostic message associated with type_convert()
-    dplyr::rename_with(.fn = ~ tolower(str_remove(.x, paste0(toupper(name), "_")))) %>% #make names easier to type
-    labelled::set_variable_labels(.labels = purrr::map_chr(parsed[["seriesDetail"]], ~ .x[["label"]])) #add variable labels
+    dplyr::select(names(parsed[["seriesDetail"]])) %>%
+    labelled::set_variable_labels(.labels = purrr::map_chr(parsed[["seriesDetail"]], ~ .x[["label"]])) %>% #add variable labels
+    dplyr::rename_with(.fn = ~ tolower(stringr::str_remove(.x, paste0(toupper(name), "_")))) #make names easier to type
 
   structure(
     list(
