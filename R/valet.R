@@ -1,4 +1,15 @@
+#' Retrieve Valet response.
+#'
+#' @param name A character of at least length 1.
+#' @param group Boolean.
+#'
+#' @return A \code{valet} object.
+#'
+#' @import httr
+#'
+#' @export
 valet <- function(name = NULL, group = F) {
+
   url <- modify_url("https://www.bankofcanada.ca/", path = paste0("valet/observations/", ifelse(group, "group/", ""), name, "/json"))
 
   resp <- GET(url, user_agent("https://github.com/runkelcorey/valet"))
@@ -15,23 +26,13 @@ valet <- function(name = NULL, group = F) {
     )
   }
 
-  df <- parsed[["observations"]][-1] %>% #remove observation id
-    purrr::map_dfc(~ .x[["v"]]) %>% #bind lists into tibble/data frame
-    readr::type_convert() %>% #convert dates to dates, numbers to numbers, etc.
-    suppressMessages() %>% #remove diagnostic message associated with type_convert()
-    dplyr::select(names(parsed[["seriesDetail"]])) %>%
-    labelled::set_variable_labels(.labels = purrr::map_chr(parsed[["seriesDetail"]], ~ .x[["label"]])) %>% #add variable labels
-    dplyr::rename_with(.fn = ~ tolower(stringr::str_remove(.x, paste0(toupper(name), "_")))) #make names easier to type
-
   structure(
     list(
-      content = df,
+      content = parsed,
       path = name,
       response = resp[-which(names(resp) == "content")]
     ),
     class = "valet"
   )
-
-
 
 }
