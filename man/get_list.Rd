@@ -10,8 +10,9 @@ get_list(type = c("series", "groups"))
 \item{type}{Either \code{series} or \code{groups}.}
 }
 \value{
-A \code{tibble}.
+A \code{tibble} of series or group information.
 }
 \description{
-List possible series or groups.
+\code{get_list} returns metadata about all Bank of Canada series or series
+groups.
 }

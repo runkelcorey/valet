@@ -1,5 +1,8 @@
 #' List possible series or groups.
 #'
+#' \code{get_list} returns metadata about all Bank of Canada series or series
+#' groups.
+#'
 #' @param type Either \code{series} or \code{groups}.
 #'
 #' @return A \code{tibble} of series or group information.

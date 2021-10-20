@@ -1,7 +1,12 @@
-#' Retrieve observations from series
+#' Get series or series-group details
 #'
-#' @param name A character of length 1 indicating the series or series group for which information should be retrieved.
-#' @param group A Boolean indicating whether the \code{name} is a series or a series group.
+#' \code{get_details} returns metadata from a Bank of Canada series or series
+#' group.
+#'
+#' @param name A character of length 1 indicating the series or series group for
+#'   which information should be retrieved.
+#' @param group A Boolean indicating whether the \code{name} is a series or a
+#'   series group.
 #'
 #' @return A list of series or group details.
 #'

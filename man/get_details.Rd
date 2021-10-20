@@ -2,21 +2,21 @@
 % Please edit documentation in R/get_details.R
 \name{get_details}
 \alias{get_details}
-\title{Retrieve observations from series}
+\title{Get series or series-group details}
 \usage{
 get_details(name = NULL, group = F)
 }
 \arguments{
-\item{name}{A character of length 1.}
+\item{name}{A character of length 1 indicating the series or series group for
+which information should be retrieved.}
 
-\item{group}{A Boolean.}
+\item{group}{A Boolean indicating whether the \code{name} is a series or a
+series group.}
 }
 \value{
-A list.
+A list of series or group details.
 }
 \description{
-Retrieve observations from series
-}
-\details{
-\emph{name} refers to the series or series group name identifiable on the Bank of Canada's website or via \code{get_list}.
+\code{get_details} returns metadata from a Bank of Canada series or series
+group.
 }

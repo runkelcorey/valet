@@ -2,20 +2,27 @@
 % Please edit documentation in R/get_group.R
 \name{get_group}
 \alias{get_group}
-\title{Retrieve observations from series}
+\title{Get series-group observations}
 \usage{
 get_group(name = NULL, ...)
 }
 \arguments{
-\item{name}{A character of length 1.}
+\item{name}{A \code{character} of length 1 indicating the series group to
+retrieve.}
 
-\item{...}{Objects passed to other methods.}
+\item{...}{Additional query parameters. Possible values are \code{start_date}
+and/or \code{end_date} (both character), or one of \code{recent},
+\code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all
+numeric).}
 }
 \value{
 A \code{tibble}.
-
-#' @details Valet, the server-side API, does not always accept \emph{...} arguments for series groups. See \code{\link{get_series}} for a list of possible query parameters.
 }
 \description{
-Retrieve observations from series
+\code{get_group} returns observations from a Bank of Canada series group.
+}
+\details{
+Valet, the server-side API, does not always return observations
+  filtered by \strong{...} arguments for series groups, even if it will accept
+  the request.
 }

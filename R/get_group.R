@@ -1,11 +1,19 @@
-#' Retrieve observations from series
+#' Get series-group observations
 #'
-#' @param name A \code{character} of length 1 indicating the series group to retrieve.
-#' @param ... Additional query parameters. Possible values are \code{start_date} and/or \code{end_date} (both character), or one of \code{recent}, \code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all numeric).
+#' \code{get_group} returns observations from a Bank of Canada series group.
+#'
+#' @param name A \code{character} of length 1 indicating the series group to
+#'   retrieve.
+#' @param ... Additional query parameters. Possible values are \code{start_date}
+#'   and/or \code{end_date} (both character), or one of \code{recent},
+#'   \code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all
+#'   numeric).
 #'
 #' @return A \code{tibble}.
 #'
-#' @details Valet, the server-side API, does not always return observations filtered by \emph{...} arguments for series groups, even if it will accept the request.
+#' @details Valet, the server-side API, does not always return observations
+#'   filtered by \strong{...} arguments for series groups, even if it will accept
+#'   the request.
 #'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select rename_with

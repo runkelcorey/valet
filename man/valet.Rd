@@ -2,20 +2,23 @@
 % Please edit documentation in R/valet.R
 \name{valet}
 \alias{valet}
-\title{Retrieve Valet response.}
+\title{Retrieve Valet response}
 \usage{
 valet(name = NULL, group = F, ...)
 }
 \arguments{
-\item{name}{A character of at least length 1.}
+\item{name}{A character of at least length 1 indicating the series or series
+group to retrieve.}
 
-\item{group}{Boolean.}
+\item{group}{Boolean indicating whether the \code{name} is a series or a
+series group.}
 
-\item{...}{Objects from other methods.}
+\item{...}{Query parameters from other methods.}
 }
 \value{
 A \code{valet} object.
 }
 \description{
-Retrieve Valet response.
+\code{valet} is the core back-end to get responses from the Bank of Canada
+API.
 }

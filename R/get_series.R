@@ -1,9 +1,16 @@
-#' Retrieve observations from series
+#' Get series observations
 #'
-#' @param name A \code{character} of at least length 1 indicating the series to retrieve.
-#' @param ... Additional query parameters. Possible values are \code{start_date} and/or \code{end_date} (both character), or one of \code{recent}, \code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all numeric).
+#' \code{get_series} returns observations from one or more Bank of Canada
+#' series, subject to some date filtering.
 #'
-#' @return A \code{tibble} of size \eqn{n+1} where \eqn{n = \code{length(name)}}.
+#' @param name A \code{character} of at least length 1 indicating the series to
+#'   retrieve.
+#' @param ... Additional query parameters. Possible values are \code{start_date}
+#'   and/or \code{end_date} (both character), or one of \code{recent},
+#'   \code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all
+#'   numeric).
+#'
+#' @return A \code{tibble} of size \eqn{length(name) + 1}.
 #'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select

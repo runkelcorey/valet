@@ -1,7 +1,12 @@
-#' Retrieve Valet response.
+#' Retrieve Valet response
 #'
-#' @param name A character of at least length 1 indicating the series or series group to retrieve.
-#' @param group Boolean indicating whether the \code{name} is a series or a series group.
+#' \code{valet} is the core back-end to get responses from the Bank of Canada
+#' API.
+#'
+#' @param name A character of at least length 1 indicating the series or series
+#'   group to retrieve.
+#' @param group Boolean indicating whether the \code{name} is a series or a
+#'   series group.
 #' @param ... Query parameters from other methods.
 #'
 #' @return A \code{valet} object.
