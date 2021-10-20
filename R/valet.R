@@ -1,11 +1,13 @@
 #' Retrieve Valet response.
 #'
-#' @param name A character of at least length 1.
-#' @param group Boolean.
+#' @param name A character of at least length 1 indicating the series or series group to retrieve.
+#' @param group Boolean indicating whether the \code{name} is a series or a series group.
+#' @param ... Query parameters from other methods.
 #'
 #' @return A \code{valet} object.
 #'
 #' @import httr
+#' @importFrom jsonlite fromJSON
 #'
 #' @export
 valet <- function(name = NULL, group = F, ...) {
@@ -14,7 +16,7 @@ valet <- function(name = NULL, group = F, ...) {
 
   resp <- GET(url, user_agent("https://github.com/runkelcorey/valet"))
 
-  parsed <- jsonlite::fromJSON(content(resp, "text"))
+  parsed <- fromJSON(content(resp, "text"))
 
   if (http_error(resp)) {
     stop(

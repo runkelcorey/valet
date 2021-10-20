@@ -8,10 +8,15 @@ get_series(name = NULL, ...)
 }
 \arguments{
 \item{name}{A character of at least length 1.}
+
+\item{...}{Objects passed to other methods.}
 }
 \value{
 A \code{tibble}.
 }
 \description{
 Retrieve observations from series
+}
+\details{
+Possible values for \emph{...} are \code{start_date} and/or \code{end_date} (both character), or one of \code{recent}, \code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all numeric).
 }

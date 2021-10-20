@@ -8,9 +8,13 @@ get_group(name = NULL, ...)
 }
 \arguments{
 \item{name}{A character of length 1.}
+
+\item{...}{Objects passed to other methods.}
 }
 \value{
 A \code{tibble}.
+
+#' @details Valet, the server-side API, does not always accept \emph{...} arguments for series groups. See \code{\link{get_series}} for a list of possible query parameters.
 }
 \description{
 Retrieve observations from series

@@ -1,7 +1,9 @@
 #' Retrieve observations from series
 #'
-#' @param name A character of at least length 1.
-#' @return A \code{tibble}.
+#' @param name A \code{character} of at least length 1 indicating the series to retrieve.
+#' @param ... Additional query parameters. Possible values are \code{start_date} and/or \code{end_date} (both character), or one of \code{recent}, \code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all numeric).
+#'
+#' @return A \code{tibble} of size \eqn{n+1} where \eqn{n = \code{length(name)}}.
 #'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select

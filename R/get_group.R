@@ -1,7 +1,11 @@
 #' Retrieve observations from series
 #'
-#' @param name A character of length 1.
+#' @param name A \code{character} of length 1 indicating the series group to retrieve.
+#' @param ... Additional query parameters. Possible values are \code{start_date} and/or \code{end_date} (both character), or one of \code{recent}, \code{recent_weeks}, \code{recent_months}, or \code{recent_years} (all numeric).
+#'
 #' @return A \code{tibble}.
+#'
+#' @details Valet, the server-side API, does not always return observations filtered by \emph{...} arguments for series groups, even if it will accept the request.
 #'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select rename_with

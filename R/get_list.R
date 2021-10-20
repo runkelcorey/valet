@@ -2,7 +2,7 @@
 #'
 #' @param type Either \code{series} or \code{groups}.
 #'
-#' @return A \code{tibble}.
+#' @return A \code{tibble} of series or group information.
 #'
 #' @importFrom httr modify_url
 #' @importFrom readr read_csv cols

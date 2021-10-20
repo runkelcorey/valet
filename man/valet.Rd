@@ -10,6 +10,8 @@ valet(name = NULL, group = F, ...)
 \item{name}{A character of at least length 1.}
 
 \item{group}{Boolean.}
+
+\item{...}{Objects from other methods.}
 }
 \value{
 A \code{valet} object.

@@ -1,11 +1,9 @@
 #' Retrieve observations from series
 #'
-#' @param name A character of length 1.
-#' @param group A Boolean.
+#' @param name A character of length 1 indicating the series or series group for which information should be retrieved.
+#' @param group A Boolean indicating whether the \code{name} is a series or a series group.
 #'
-#' @return A list.
-#'
-#' @details \emph{name} refers to the series or series group name identifiable on the Bank of Canada's website or via \code{get_list}.
+#' @return A list of series or group details.
 #'
 #' @import httr
 #' @importFrom jsonlite fromJSON
