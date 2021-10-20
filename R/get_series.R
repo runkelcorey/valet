@@ -9,9 +9,9 @@
 #' @importFrom readr type_convert
 #'
 #' @export
-get_series <- function(name = NULL) {
+get_series <- function(name = NULL, ...) {
 
-  df <- valet(name = paste(name, sep = "", collapse = ","), F)[["content"]]
+  df <- valet(name = paste(name, sep = "", collapse = ","), F, ...)[["content"]]
 
   df[["observations"]][-1] %>%
     map_dfc(~ .x[["v"]]) %>%

@@ -5,7 +5,7 @@
 #' @return A \code{tibble}.
 #'
 #' @importFrom httr modify_url
-#' @importFrom readr read_csv
+#' @importFrom readr read_csv cols
 #'
 #' @export
 get_list <- function(type = c("series", "groups")) {

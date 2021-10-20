@@ -8,9 +8,9 @@
 #' @import httr
 #'
 #' @export
-valet <- function(name = NULL, group = F) {
+valet <- function(name = NULL, group = F, ...) {
 
-  url <- modify_url("https://www.bankofcanada.ca/", path = paste0("valet/observations/", ifelse(group, "group/", ""), name, "/json"))
+  url <- modify_url("https://www.bankofcanada.ca/", path = paste0("valet/observations/", ifelse(group, "group/", ""), name, "/json"), query = list(...))
 
   resp <- GET(url, user_agent("https://github.com/runkelcorey/valet"))
 
@@ -19,8 +19,10 @@ valet <- function(name = NULL, group = F) {
   if (http_error(resp)) {
     stop(
       sprintf(
-        "Valet request failed [%s]",
-        status_code(resp)
+        "Valet request failed [%s]\n%s\nSee %s",
+        status_code(resp),
+        parsed$message,
+        parsed$docs
       ),
       call. = FALSE
     )

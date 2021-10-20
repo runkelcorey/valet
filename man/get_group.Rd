@@ -4,7 +4,7 @@
 \alias{get_group}
 \title{Retrieve observations from series}
 \usage{
-get_group(name = NULL)
+get_group(name = NULL, ...)
 }
 \arguments{
 \item{name}{A character of length 1.}

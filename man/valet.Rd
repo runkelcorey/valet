@@ -4,7 +4,7 @@
 \alias{valet}
 \title{Retrieve Valet response.}
 \usage{
-valet(name = NULL, group = F)
+valet(name = NULL, group = F, ...)
 }
 \arguments{
 \item{name}{A character of at least length 1.}

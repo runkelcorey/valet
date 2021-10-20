@@ -4,7 +4,7 @@
 \alias{get_series}
 \title{Retrieve observations from series}
 \usage{
-get_series(name = NULL)
+get_series(name = NULL, ...)
 }
 \arguments{
 \item{name}{A character of at least length 1.}
