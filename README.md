@@ -6,7 +6,7 @@ There are currently a few bugs in how it handles series groups, and some tests t
 
 ## Installation
 
-You can install `valet` using `devtools::install_github("runkelcorey/valet")`
+`devtools::install_github("runkelcorey/valet")`
 
 ## Usage
 
