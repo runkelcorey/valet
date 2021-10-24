@@ -25,12 +25,20 @@ get_group <- function(name = NULL, ...) {
 
   df <- valet(name = name, T, ...)[["content"]]
 
-  df[["observations"]][-1] %>%
+  results <- df[["observations"]][-1] %>%
     map_dfc(~ .x[["v"]]) %>%
-    type_convert() %>%
-    suppressMessages() %>%
     select(names(df[["seriesDetail"]])) %>%
-    labelled::set_variable_labels(.labels = map_chr(df[["seriesDetail"]], ~ .x[["label"]])) %>%
-    rename_with(.fn = ~ tolower(sub(paste0(toupper(name), "_"), "", .x, fixed = T)))
+    labelled::set_variable_labels(.labels = map_chr(df[["seriesDetail"]], ~ .x[["label"]]))
+
+  if (all(grepl(sub("_.*", "", names(results[1])), names(results)))) {
+    results <- rename_with(results, .fn = ~ tolower(sub(paste0(sub("_.*", "", names(results[1])), "_"), "", .x, fixed = T)))
+  }
+
+  if (names(df[["observations"]][1]) == "d")
+  {results <- mutate(results, date = df[["observations"]][[1]], .before = 1)}
+  else {results <- mutate(results, id = df[["observations"]][[1]], .before = 1)}
+
+  type_convert(results) %>%
+    suppressMessages()
 
 }
