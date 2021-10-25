@@ -30,7 +30,7 @@ get_group <- function(name = NULL, ...) {
     select(names(df[["seriesDetail"]])) %>%
     labelled::set_variable_labels(.labels = map_chr(df[["seriesDetail"]], ~ .x[["label"]]))
 
-  if (all(grepl(sub("_.*", "", names(results[1])), names(results)))) {
+  while (all(grepl(sub("_.*", "", names(results[1])), names(results)))) {
     results <- rename_with(results, .fn = ~ tolower(sub(paste0(sub("_.*", "", names(results[1])), "_"), "", .x, fixed = T)))
   }
 
