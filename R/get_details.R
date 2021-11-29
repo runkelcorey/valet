@@ -10,6 +10,9 @@
 #'
 #' @return A list of series or group details.
 #'
+#' @example
+#' get_details("BAPF_TRANSACTION_DATA", group = T)
+#'
 #' @import httr
 #' @importFrom jsonlite fromJSON
 #'

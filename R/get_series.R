@@ -12,6 +12,14 @@
 #'
 #' @return A \code{tibble} of size \eqn{length(name) + 1}.
 #'
+#' @examples
+#' get_series("FXCADAUD")
+#'
+#' \dontrun{
+#' #this is a group
+#' get_series("BAPF")
+#' }
+#'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select
 #' @importFrom readr type_convert

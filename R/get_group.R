@@ -15,6 +15,15 @@
 #'   filtered by \strong{...} arguments for series groups, even if it will accept
 #'   the request.
 #'
+#' @examples
+#' get_group("BAPF_TRANSACTION_DATA")
+#' get_group("gbpp")
+#'
+#' \dontrun{
+#' #this is a series
+#' get_group("FXCADAUD")
+#' }
+#'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select rename_with
 #' @importFrom readr type_convert
