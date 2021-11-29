@@ -14,20 +14,23 @@
 #'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select
-#' @importFrom labelled set_variable_labels
 #' @importFrom readr type_convert
 #'
 #' @export
 get_series <- function(name = NULL, ...) {
 
-  df <- valet(name = paste(name, sep = "", collapse = ","), F, ...)[["content"]]
+  results <- valet(name = paste(name, sep = "", collapse = ","), F, ...)[["content"]]
 
-  df[["observations"]][-1] %>%
+  df <- results[["observations"]][-1] %>%
     map_dfc(~ .x[["v"]]) %>%
-    mutate(date = df[["observations"]][["d"]]) %>%
+    mutate(date = results[["observations"]][["d"]]) %>%
     type_convert() %>%
     suppressMessages() %>%
-    select(date, names(df[["seriesDetail"]])) %>%
-    labelled::set_variable_labels(.labels = append("YYYY-MM-DD", map_chr(df[["seriesDetail"]], ~ .x[["label"]])))
+    select(date, names(results[["seriesDetail"]]))
 
+  for (x in names(df)) {
+    attr(df[[x]], "label") <- results[["seriesDetail"]][[x]][["label"]]
+  }
+
+  df
 }

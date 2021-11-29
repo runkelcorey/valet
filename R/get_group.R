@@ -17,7 +17,6 @@
 #'
 #' @importFrom purrr map_dfc map_chr
 #' @importFrom dplyr mutate select rename_with
-#' @importFrom labelled set_variable_labels
 #' @importFrom readr type_convert
 #'
 #' @export
@@ -28,17 +27,21 @@ get_group <- function(name = NULL, ...) {
   results <- df[["observations"]][-1] %>%
     map_dfc(~ .x[["v"]]) %>%
     select(names(df[["seriesDetail"]])) %>%
-    labelled::set_variable_labels(.labels = map_chr(df[["seriesDetail"]], ~ .x[["label"]]))
+    type_convert() %>%
+    suppressMessages()
+
+  for (x in names(results)) {
+    attr(results[[x]], "label") <- df[["seriesDetail"]][[x]][["label"]]
+  }
 
   while (all(grepl(sub("_.*", "", names(results[1])), names(results)))) {
     results <- rename_with(results, .fn = ~ tolower(sub(paste0(sub("_.*", "", names(results[1])), "_"), "", .x, fixed = T)))
   }
 
   if (names(df[["observations"]][1]) == "d")
-  {results <- mutate(results, date = df[["observations"]][[1]], .before = 1)}
+  {results <- mutate(results, date = as.Date.character(df[["observations"]][[1]], .before = 1))}
   else {results <- mutate(results, id = df[["observations"]][[1]], .before = 1)}
 
-  type_convert(results) %>%
-    suppressMessages()
+  results
 
 }

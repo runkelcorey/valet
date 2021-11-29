@@ -15,5 +15,4 @@ Imports:
     dplyr,
     readr,
     purrr,
-    jsonlite,
-    labelled
+    jsonlite
