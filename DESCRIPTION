@@ -5,7 +5,7 @@ Version: 0.1.0
 Author: Corey Runkel
 Maintainer: Corey Runkel <runkelcorey@gmail.com>
 Description: This package provides basic access to the Bank of Canada's Valet API. Work is underway to fully span the API's paths. This client defaults to wide data.frames but provides tools to access the response as a list.
-License: MIT
+License: MIT + file LICENSE
 URL: runkelcorey.github.io/valet
 Encoding: UTF-8
 LazyData: true
