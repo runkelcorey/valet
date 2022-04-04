@@ -23,6 +23,6 @@ A \code{valet} object.
 API.
 }
 \examples{
-valet(name = "GBPP", group = T, recent_weeks = 2)
+valet(name = "GBPP", group = TRUE, recent_weeks = 2)
 
 }

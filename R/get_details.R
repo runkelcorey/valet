@@ -15,7 +15,7 @@
 #' \dontrun{
 #' get_details("BAPF_TRANSACTION_DATA")
 #' }
-#' get_details("BAPF_TRANSACTION_DATA", group = T)
+#' get_details("BAPF_TRANSACTION_DATA", group = TRUE)
 #'
 #' @import httr
 #' @importFrom jsonlite fromJSON

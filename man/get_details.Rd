@@ -25,6 +25,6 @@ get_details("CES_C4E_LOSE_JOB_SK")
 \dontrun{
 get_details("BAPF_TRANSACTION_DATA")
 }
-get_details("BAPF_TRANSACTION_DATA", group = T)
+get_details("BAPF_TRANSACTION_DATA", group = TRUE)
 
 }
