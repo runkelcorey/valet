@@ -1,0 +1,71 @@
+---
+title: "An ideal valet workflow with R"
+author: "Corey N. Runkel"
+date: 2022-04-04
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{An ideal valet workflow with R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(valet)
+```
+
+# Why valet?
+
+Application programming interfaces (APIs) are at the heart of reproducible code.
+They allow a few lines of code to replace the ugly downloading process that many researchers are familiar with in today's data landscape.
+Me and my [then-]colleagues at the Yale Program on Financial Stability encountered this problem while we were studying the Bank of Canada's responses to COVID-19.
+I realized that no R client for their updated API---[named valet](https://www.bankofcanada.ca/valet/docs)---existed, and wrote this package to make other useR's lives easier.
+It's a straightforward implementation of the API's functionality.
+Here's one way it could be used.
+
+# A workflow
+
+1. Suppose a researcher wanted to see what datasets the Bank of Canada offered:
+
+```{r get_list}
+datasets <- get_list("groups")
+```
+
+This can be overwhelming, but it does allow us to filter. Let's look for data on the operations of the Bankers' Acceptance Purchase Facility (BAPF), a COVID-19 response that purchased corporate debt securities:
+```{r filter_datasets}
+subset(datasets, grepl("Banker", label))
+```
+
+We have two potential datasets, but it's not clear which would be better.
+To check:^[It's important to note that `get_details` and `valet` make a distinction between grouped observations and single series.
+The user must select `group = TRUE` or valet will not return a dataset.]
+```{r get_details}
+get_details("BANKERS_ACCEPTANCE_PURCHASE_FACILITY", group = T)
+get_details("BAPF_TRANSACTION_DATA", group = T)
+```
+
+This output requires some understanding of what the dataset is.
+In this case, we want an amount to be purchased, so we understand how large the program could have been.
+
+2. Download selected data
+```{r get_group}
+get_group("BANKERS_ACCEPTANCE_PURCHASE_FACILITY")
+```
+
+
+3. You can grab a bunch of observations with a map-reduce framework, or leverage the Bank of Canada's own, comma-separated querying feature:
+
+```{r map}
+get_list("series") %>%
+  subset(grepl("NOON", label)) %>%
+  .$name %>%
+  paste0(collapse = ",") %>%
+  get_series()
+```
+
