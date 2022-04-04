@@ -22,3 +22,7 @@ A \code{valet} object.
 \code{valet} is the core back-end to get responses from the Bank of Canada
 API.
 }
+\examples{
+valet(name = "GBPP", group = T, recent_weeks = 2)
+
+}

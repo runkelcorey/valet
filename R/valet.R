@@ -11,6 +11,9 @@
 #'
 #' @return A \code{valet} object.
 #'
+#' @examples
+#' valet(name = "GBPP", group = T, recent_weeks = 2)
+#'
 #' @import httr
 #' @importFrom jsonlite fromJSON
 #'

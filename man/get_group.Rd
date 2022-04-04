@@ -26,3 +26,13 @@ Valet, the server-side API, does not always return observations
   filtered by \strong{...} arguments for series groups, even if it will accept
   the request.
 }
+\examples{
+get_group("BAPF_TRANSACTION_DATA")
+get_group("gbpp")
+
+\dontrun{
+#this is a series
+get_group("FXCADAUD")
+}
+
+}

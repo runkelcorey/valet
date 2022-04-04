@@ -22,3 +22,12 @@ A \code{tibble} of size \eqn{length(name) + 1}.
 \code{get_series} returns observations from one or more Bank of Canada
 series, subject to some date filtering.
 }
+\examples{
+get_series("FXCADAUD")
+
+\dontrun{
+#this is a group
+get_series("BAPF")
+}
+
+}

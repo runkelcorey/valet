@@ -20,3 +20,11 @@ A list of series or group details.
 \code{get_details} returns metadata from a Bank of Canada series or series
 group.
 }
+\examples{
+get_details("CES_C4E_LOSE_JOB_SK")
+\dontrun{
+get_details("BAPF_TRANSACTION_DATA")
+}
+get_details("BAPF_TRANSACTION_DATA", group = T)
+
+}
