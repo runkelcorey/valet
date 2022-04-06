@@ -1,0 +1,86 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# valet
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+This package provides an R client to the Bank of Canada's valet API.
+It provide access to all of the API's functionality except its RSS feeds.
+There are currently a few bugs in how it handles series groups, and some tests to develop and run.
+
+## installation
+
+You can install the development version of valet from [GitHub](https://github.com/) with:
+
+``` {r}
+install.packages("devtools")
+devtools::install_github("runkelcorey/valet")
+```
+
+## basic usage
+
+The core functions of `valet` are `get_series()` and `get_group()`.
+These retrieve observations from series and series groups, subject to some date filters.
+Here's an example of the last five Canadian dollar--US dollar exchange-rate observations.
+
+``` {r}
+library(valet)
+get_series("FXCADUSD", recent = 5)
+```
+
+## workflow
+
+1. Suppose a researcher wanted to see what datasets the Bank of Canada offered:
+
+```{r}
+datasets <- get_list("groups")
+```
+
+This can be overwhelming, but it does allow us to filter. Let's look for monthly Canadian Effective Exchange Rates:
+```{r}
+subset(datasets, grepl("CEER", label))
+```
+
+We have two potential datasets, and the option to choose real or nominal data.
+Let's take a look at their details before we grab what could be thousands of observations (in this case, let's say we're more interested in their comparisons against non-US major currencies than that they be nominal or real):^[It's important to note that `get_details` and `valet` make a distinction between grouped observations and single series.
+The user must select `group = TRUE` or valet will not return a dataset.]
+```{r}
+get_details("CEER_MONTHLY_REAL", group = T)
+get_details("CEER_MONTHLY_NOMINAL", group = T)
+```
+
+Both datasets satisfy this condition, so we'll grab the real data.
+
+2. Download selected data
+```{r}
+get_group("CEER_MONTHLY_REAL")
+```
+
+
+3. You can grab a bunch of observations with a map-reduce framework, or leverage the Bank of Canada's own, comma-separated querying feature:
+
+```{r}
+get_list("series") %>%
+  subset(grepl("NOON", label)) %>%
+  .$name %>%
+  paste0(collapse = ",") %>%
+  get_series()
+```
+
+## also
+The Bank of Canada's API documentation explains API usage thoroughly.
+Their [website](https://www.bankofcanada.ca/) is useful for finding series too.
