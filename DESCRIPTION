@@ -5,7 +5,6 @@ Version: 0.9.0
 Authors@R: c(person(given = "Corey", family = "Runkel",
              email = "runkelcorey@gmail.com", role = c("aut", "cre"),
              comment = c(ORCID = "0000-0001-8992-4434")))
-Maintainer: Corey Runkel <runkelcorey@gmail.com>
 Description: The Bank of Canada updated their Valet API, and no R client
              currently exists. This provides access to all of Valet's endpoints
              and serves responses in wide format easy for researchers to
