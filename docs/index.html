@@ -5,20 +5,25 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Provides R Client to the Bank of Canada's Valet API • valet</title>
+<title>Provide R Client to the Bank of Canada's Valet API • valet</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><meta property="og:title" content="Provides R Client to the Bank of Canada's Valet API">
-<meta property="og:description" content="This package provides basic access to the Bank of Canadas Valet API. Work is underway to fully span the APIs paths. This client defaults to wide data.frames but provides tools to access the response as a list.">
+<script src="pkgdown.js"></script><meta property="og:title" content="Provide R Client to the Bank of Canada's Valet API">
+<meta property="og:description" content="The Bank of Canada updated their Valet API, and no R client
+             currently exists. This provides access to all of Valet's endpoints
+             and serves responses in wide format easy for researchers to
+             handle but also provides tools to access API responses as a list.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,20 +36,17 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">valet</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -59,62 +61,243 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="valet" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#valet" class="anchor"></a>valet</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="valet">valet<a class="anchor" aria-label="anchor" href="#valet"></a>
+</h1></div>
+<!-- badges: start -->
+<!-- badges: end -->
 <p>This package provides an R client to the Bank of Canada’s valet API. It provide access to all of the API’s functionality except its RSS feeds. There are currently a few bugs in how it handles series groups, and some tests to develop and run.</p>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p><code>devtools::install_github("runkelcorey/valet")</code></p>
+<div class="section level2">
+<h2 id="installation">installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>You can install the development version of valet from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<span class="co">#&gt; Installing package into '/home/corey/R/x86_64-pc-linux-gnu-library/4.1'</span>
+<span class="co">#&gt; (as 'lib' is unspecified)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"runkelcorey/valet"</span><span class="op">)</span>
+<span class="co">#&gt; Skipping install of 'valet' from a github remote, the SHA1 (ed7912d1) has not changed since last install.</span>
+<span class="co">#&gt;   Use `force = TRUE` to force installation</span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="basic-usage">basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
+</h2>
 <p>The core functions of <code>valet</code> are <code><a href="reference/get_series.html">get_series()</a></code> and <code><a href="reference/get_group.html">get_group()</a></code>. These retrieve observations from series and series groups, subject to some date filters. Here’s an example of the last five Canadian dollar–US dollar exchange-rate observations.</p>
-<pre><code>get_series("FXCADUSD", recent = 5)
-# A tibble: 5 x 2
-  date       FXCADUSD
-  &lt;date&gt;        &lt;dbl&gt;
-1 2021-10-20    0.811
-2 2021-10-19    0.809
-3 2021-10-18    0.808
-4 2021-10-15    0.808
-5 2021-10-14    0.808</code></pre>
-<p>To find these series and series groups, use <code><a href="reference/get_list.html">get_list()</a></code>. To drill down into the metadata, use <code><a href="reference/get_details.html">get_details()</a></code>.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">valet</span><span class="op">)</span>
+<span class="fu"><a href="reference/get_series.html">get_series</a></span><span class="op">(</span><span class="st">"FXCADUSD"</span>, recent <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 5 × 2</span>
+<span class="co">#&gt;   date       FXCADUSD</span>
+<span class="co">#&gt;   &lt;date&gt;        &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 2022-04-05    0.803</span>
+<span class="co">#&gt; 2 2022-04-04    0.801</span>
+<span class="co">#&gt; 3 2022-04-01    0.799</span>
+<span class="co">#&gt; 4 2022-03-31    0.800</span>
+<span class="co">#&gt; 5 2022-03-30    0.802</span></code></pre></div>
 </div>
-<div id="see-also" class="section level2">
-<h2 class="hasAnchor">
-<a href="#see-also" class="anchor"></a>See also</h2>
-<p>The Bank of Canada’s API documentation explains API usage thoroughly. The BoC’s <a href="https://www.bankofcanada.ca/">website</a> is useful for finding series too.</p>
+<div class="section level2">
+<h2 id="workflow">workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li>Suppose a researcher wanted to see what datasets the Bank of Canada offered:</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">datasets</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_list.html">get_list</a></span><span class="op">(</span><span class="st">"groups"</span><span class="op">)</span></code></pre></div>
+<p>This can be overwhelming, but it does allow us to filter. Let’s look for monthly Canadian Effective Exchange Rates:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">datasets</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"CEER"</span>, <span class="va">label</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 8 × 4</span>
+<span class="co">#&gt;   name                                  label                  description link </span>
+<span class="co">#&gt;   &lt;chr&gt;                                 &lt;chr&gt;                  &lt;chr&gt;       &lt;chr&gt;</span>
+<span class="co">#&gt; 1 CEER_DAILY                            CEER Daily             Daily Nomi… http…</span>
+<span class="co">#&gt; 2 CEER_MONTHLY_NOMINAL                  CEER Monthly Nominal   Monthly No… http…</span>
+<span class="co">#&gt; 3 CEER_MONTHLY_REAL                     CEER Monthly Real      Monthly Re… http…</span>
+<span class="co">#&gt; 4 CEER_TOTAL_WEIGHTS                    CEER Total Weights     Canadian E… http…</span>
+<span class="co">#&gt; 5 CEER_EXPORT_WEIGHTS                   CEER Export Weights    Canadian E… http…</span>
+<span class="co">#&gt; 6 CEER_IMPORT_WEIGHTS                   CEER Import Weights    Canadian E… http…</span>
+<span class="co">#&gt; 7 CEER_THIRD-MARKET_COMPETITION_WEIGHTS CEER Third-Market Com… Canadian E… http…</span>
+<span class="co">#&gt; 8 CEER                                  CEER                   CEER        http…</span></code></pre></div>
+<p>We have two potential datasets, and the option to choose real or nominal data. Let’s take a look at their details before we grab what could be thousands of observations (in this case, let’s say we’re more interested in their comparisons against non-US major currencies than that they be nominal or real):[1]</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/get_details.html">get_details</a></span><span class="op">(</span><span class="st">"CEER_MONTHLY_REAL"</span>, group <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="co">#&gt; $name</span>
+<span class="co">#&gt; [1] "CEER_MONTHLY_REAL"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $label</span>
+<span class="co">#&gt; [1] "CEER Monthly Real"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $description</span>
+<span class="co">#&gt; [1] "Monthly Real Canadian Effective Exchange Rates"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries</span>
+<span class="co">#&gt; $groupSeries$CEER_BROADM</span>
+<span class="co">#&gt; $groupSeries$CEER_BROADM$label</span>
+<span class="co">#&gt; [1] "Monthly Real Canadian Effective Exchange Rates"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_BROADM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_BROADM"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_BROAD_XUSM</span>
+<span class="co">#&gt; $groupSeries$CEER_BROAD_XUSM$label</span>
+<span class="co">#&gt; [1] "Monthly Real CEER excluding the U.S. dollar"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_BROAD_XUSM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_BROAD_XUSM"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_MCM</span>
+<span class="co">#&gt; $groupSeries$CEER_MCM$label</span>
+<span class="co">#&gt; [1] "Monthly Real CEER versus Major Currencies"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_MCM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_MCM"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_OITPM</span>
+<span class="co">#&gt; $groupSeries$CEER_OITPM$label</span>
+<span class="co">#&gt; [1] "Monthly Real CEER versus Other Important Trading Partners"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_OITPM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_OITPM"</span>
+<span class="fu"><a href="reference/get_details.html">get_details</a></span><span class="op">(</span><span class="st">"CEER_MONTHLY_NOMINAL"</span>, group <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>
+<span class="co">#&gt; $name</span>
+<span class="co">#&gt; [1] "CEER_MONTHLY_NOMINAL"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $label</span>
+<span class="co">#&gt; [1] "CEER Monthly Nominal"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $description</span>
+<span class="co">#&gt; [1] "Monthly Nominal Canadian Effective Exchange Rates"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries</span>
+<span class="co">#&gt; $groupSeries$CEER_BROADNM</span>
+<span class="co">#&gt; $groupSeries$CEER_BROADNM$label</span>
+<span class="co">#&gt; [1] "Monthly Nominal Canadian Effective Exchange Rates"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_BROADNM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_BROADNM"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_BROADN_XUSM</span>
+<span class="co">#&gt; $groupSeries$CEER_BROADN_XUSM$label</span>
+<span class="co">#&gt; [1] "Monthly Nominal CEER excluding the U.S. dollar"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_BROADN_XUSM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_BROADN_XUSM"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_MCNM</span>
+<span class="co">#&gt; $groupSeries$CEER_MCNM$label</span>
+<span class="co">#&gt; [1] "Monthly Nominal CEER versus Major Currencies"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_MCNM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_MCNM"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_OITPNM</span>
+<span class="co">#&gt; $groupSeries$CEER_OITPNM$label</span>
+<span class="co">#&gt; [1] "Monthly Nominal CEER versus Other Important Trading Partners"</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; $groupSeries$CEER_OITPNM$link</span>
+<span class="co">#&gt; [1] "https://www.bankofcanada.ca/valet/series/CEER_OITPNM"</span></code></pre></div>
+<p>Both datasets satisfy this condition, so we’ll grab the real data.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Download selected data</li>
+</ol>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/get_group.html">get_group</a></span><span class="op">(</span><span class="st">"CEER_MONTHLY_REAL"</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 276 × 5</span>
+<span class="co">#&gt;    broadm broad_xusm   mcm oitpm date      </span>
+<span class="co">#&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;    </span>
+<span class="co">#&gt;  1   96.5       94.7  96.3  97.6 1999-01-01</span>
+<span class="co">#&gt;  2   98.9       98.6  98.5 101.  1999-02-01</span>
+<span class="co">#&gt;  3   98.2       98.6  98.0  99.2 1999-03-01</span>
+<span class="co">#&gt;  4  100.       100.  100.   99.0 1999-04-01</span>
+<span class="co">#&gt;  5  102.       103.  102.  101.  1999-05-01</span>
+<span class="co">#&gt;  6  102.       103.  102.  101.  1999-06-01</span>
+<span class="co">#&gt;  7  101.       102.  101    99.8 1999-07-01</span>
+<span class="co">#&gt;  8   99.9      100.   99.8 100   1999-08-01</span>
+<span class="co">#&gt;  9  100.        99.9 100.  101.  1999-09-01</span>
+<span class="co">#&gt; 10  100.        99.3  99.8 101.  1999-10-01</span>
+<span class="co">#&gt; # … with 266 more rows</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>You can grab a bunch of observations with a map-reduce framework, or leverage the Bank of Canada’s own, comma-separated querying feature:</li>
+</ol>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="reference/get_list.html">get_list</a></span><span class="op">(</span><span class="st">"series"</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"NOON"</span>, <span class="va">label</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="va">.</span><span class="op">$</span><span class="va">name</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span>collapse <span class="op">=</span> <span class="st">","</span><span class="op">)</span> <span class="op"><a href="reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="reference/get_series.html">get_series</a></span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 2,504 × 64</span>
+<span class="co">#&gt;    date       EUROCAE01 IEXE0101 IEXE0105 IEXE0301 IEXE0701 IEXE0901 IEXE1001</span>
+<span class="co">#&gt;    &lt;date&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 2007-05-01      1.51     1.11     1.11    0.202  0.00926    0.186     0.17</span>
+<span class="co">#&gt;  2 2007-05-02      1.51     1.11     1.11    0.202  0.00924    0.186     0.17</span>
+<span class="co">#&gt;  3 2007-05-03      1.50     1.11     1.10    0.202  0.00920    0.185     0.16</span>
+<span class="co">#&gt;  4 2007-05-04      1.50     1.11     1.10    0.202  0.00921    0.185     0.16</span>
+<span class="co">#&gt;  5 2007-05-07      1.50     1.10     1.10    0.201  0.00919    0.185     0.16</span>
+<span class="co">#&gt;  6 2007-05-08      1.50     1.10     1.10    0.201  0.00921    0.184     0.16</span>
+<span class="co">#&gt;  7 2007-05-09      1.50     1.11     1.10    0.201  0.00924    0.184     0.16</span>
+<span class="co">#&gt;  8 2007-05-10      1.50     1.11     1.10    0.201  0.00920    0.183     0.16</span>
+<span class="co">#&gt;  9 2007-05-11      1.51     1.11     1.11    0.202  0.00926    0.184     0.16</span>
+<span class="co">#&gt; 10 2007-05-14      1.50     1.11     1.10    0.201  0.00920    0.183     0.16</span>
+<span class="co">#&gt; # … with 2,494 more rows, and 56 more variables: IEXE1101 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   IEXE1201 &lt;dbl&gt;, IEXE1401 &lt;dbl&gt;, IEXE1601 &lt;dbl&gt;, IEXE1901 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   IEXE2001 &lt;dbl&gt;, IEXE2101 &lt;dbl&gt;, IEXE2201 &lt;dbl&gt;, IEXE2301 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   IEXE2401 &lt;dbl&gt;, IEXE2501 &lt;dbl&gt;, IEXE2601 &lt;dbl&gt;, IEXE2702 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   IEXE2703 &lt;dbl&gt;, IEXE2801 &lt;dbl&gt;, IEXE2901 &lt;dbl&gt;, IEXE3001 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   IEXE3101 &lt;dbl&gt;, IEXE3201 &lt;dbl&gt;, IEXE3301 &lt;dbl&gt;, IEXE3401 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   IEXE3501 &lt;dbl&gt;, IEXE3601 &lt;dbl&gt;, IEXE3701 &lt;dbl&gt;, IEXE3801 &lt;dbl&gt;, …</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="also">also<a class="anchor" aria-label="anchor" href="#also"></a>
+</h2>
+<p>The Bank of Canada’s API documentation explains API usage thoroughly. Their <a href="https://www.bankofcanada.ca/" class="external-link">website</a> is useful for finding series too.</p>
+<p>[1] It’s important to note that <code>get_details</code> and <code>valet</code> make a distinction between grouped observations and single series. The user must select <code>group = TRUE</code> or valet will not return a dataset.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://opensource.org/licenses/mit-license.php">MIT</a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing valet</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Corey Runkel <br><small class="roles"> Maintainer </small>  </li>
+<li>Corey Runkel <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-8992-4434" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
+
+
 
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Corey Runkel.</p>
+  <p></p>
+<p>Developed by Corey Runkel.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -122,6 +305,8 @@
 
   
 
+
+  
 
   </body>
 </html>
