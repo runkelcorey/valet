@@ -21,7 +21,7 @@
 #' @importFrom jsonlite fromJSON
 #'
 #' @export
-get_details <- function(name = NULL, group = F) {
+get_details <- function(name = NULL, group = FALSE) {
 
   url <- modify_url("https://www.bankofcanada.ca/", path = paste0("valet/", ifelse(group, "groups/", "series/"), name, "/json"))
 
