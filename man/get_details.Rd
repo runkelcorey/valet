@@ -4,7 +4,7 @@
 \alias{get_details}
 \title{Get series or series-group details}
 \usage{
-get_details(name = NULL, group = F)
+get_details(name = NULL, group = FALSE)
 }
 \arguments{
 \item{name}{A character of length 1 indicating the series or series group for

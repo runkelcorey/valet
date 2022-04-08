@@ -1,3 +1,10 @@
+## Resubmission
+This is a resubmission. In this version I have:
+
+* Added a URL to the Valet API in the Description field of DESCRIPTION
+
+* Converted F to FALSE in R/valet.Rd and R/get_details.Rd
+
 ## R CMD check results
 
 There were no ERRORs or WARNINGs
