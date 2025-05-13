@@ -4,6 +4,7 @@
 # valet
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 This package provides an R client to the Bank of Canada’s valet API. It
@@ -18,11 +19,22 @@ You can install the development version of valet from
 
 ``` r
 install.packages("devtools")
-#> Installing package into '/home/corey/R/x86_64-pc-linux-gnu-library/4.1'
+#> Installing package into '/private/var/folders/c1/lw8x5nyd2675563cr3f2rt5w0000gp/T/RtmpwAGgiu/temp_libpath14f703d375a4e'
 #> (as 'lib' is unspecified)
 devtools::install_github("runkelcorey/valet")
-#> Skipping install of 'valet' from a github remote, the SHA1 (ed7912d1) has not changed since last install.
-#>   Use `force = TRUE` to force installation
+#> Using GitHub PAT from the git credential store.
+#> Downloading GitHub repo runkelcorey/valet@HEAD
+#> 
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#> * checking for file ‘/private/var/folders/c1/lw8x5nyd2675563cr3f2rt5w0000gp/T/Rtmp2Q1cyO/remotes14fcf32f84472/runkelcorey-valet-c4ff7e8/DESCRIPTION’ ... OK
+#> * preparing ‘valet’:
+#> * checking DESCRIPTION meta-information ... OK
+#> * checking for LF line-endings in source and make files and shell scripts
+#> * checking for empty or unneeded directories
+#> Omitted ‘LazyData’ from DESCRIPTION
+#> * building ‘valet_0.9.0.tar.gz’
+#> Installing package into '/private/var/folders/c1/lw8x5nyd2675563cr3f2rt5w0000gp/T/RtmpwAGgiu/temp_libpath14f703d375a4e'
+#> (as 'lib' is unspecified)
 ```
 
 ## basic usage
@@ -38,11 +50,11 @@ get_series("FXCADUSD", recent = 5)
 #> # A tibble: 5 × 2
 #>   date       FXCADUSD
 #>   <date>        <dbl>
-#> 1 2022-04-05    0.803
-#> 2 2022-04-04    0.801
-#> 3 2022-04-01    0.799
-#> 4 2022-03-31    0.800
-#> 5 2022-03-30    0.802
+#> 1 2025-05-12    0.714
+#> 2 2025-05-09    0.718
+#> 3 2025-05-08    0.719
+#> 4 2025-05-07    0.725
+#> 5 2025-05-06    0.726
 ```
 
 ## workflow
@@ -76,7 +88,7 @@ We have two potential datasets, and the option to choose real or nominal
 data. Let’s take a look at their details before we grab what could be
 thousands of observations (in this case, let’s say we’re more interested
 in their comparisons against non-US major currencies than that they be
-nominal or real):[1]
+nominal or real):[^1]
 
 ``` r
 get_details("CEER_MONTHLY_REAL", group = T)
@@ -169,20 +181,20 @@ Both datasets satisfy this condition, so we’ll grab the real data.
 
 ``` r
 get_group("CEER_MONTHLY_REAL")
-#> # A tibble: 276 × 5
+#> # A tibble: 315 × 5
 #>    broadm broad_xusm   mcm oitpm date      
 #>     <dbl>      <dbl> <dbl> <dbl> <date>    
 #>  1   96.5       94.7  96.3  97.6 1999-01-01
-#>  2   98.9       98.6  98.5 101.  1999-02-01
+#>  2   98.9       98.5  98.5 101.  1999-02-01
 #>  3   98.2       98.6  98.0  99.2 1999-03-01
 #>  4  100.       100.  100.   99.0 1999-04-01
 #>  5  102.       103.  102.  101.  1999-05-01
 #>  6  102.       103.  102.  101.  1999-06-01
-#>  7  101.       102.  101    99.8 1999-07-01
+#>  7  101.       102.  101.   99.8 1999-07-01
 #>  8   99.9      100.   99.8 100   1999-08-01
 #>  9  100.        99.9 100.  101.  1999-09-01
 #> 10  100.        99.3  99.8 101.  1999-10-01
-#> # … with 266 more rows
+#> # ℹ 305 more rows
 ```
 
 3.  You can grab a bunch of observations with a map-reduce framework, or
@@ -194,26 +206,26 @@ get_list("series") %>%
   .$name %>%
   paste0(collapse = ",") %>%
   get_series()
-#> # A tibble: 2,504 × 64
-#>    date       EUROCAE01 IEXE0101 IEXE0105 IEXE0301 IEXE0701 IEXE0901 IEXE1001
-#>    <date>         <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
-#>  1 2007-05-01      1.51     1.11     1.11    0.202  0.00926    0.186     0.17
-#>  2 2007-05-02      1.51     1.11     1.11    0.202  0.00924    0.186     0.17
-#>  3 2007-05-03      1.50     1.11     1.10    0.202  0.00920    0.185     0.16
-#>  4 2007-05-04      1.50     1.11     1.10    0.202  0.00921    0.185     0.16
-#>  5 2007-05-07      1.50     1.10     1.10    0.201  0.00919    0.185     0.16
-#>  6 2007-05-08      1.50     1.10     1.10    0.201  0.00921    0.184     0.16
-#>  7 2007-05-09      1.50     1.11     1.10    0.201  0.00924    0.184     0.16
-#>  8 2007-05-10      1.50     1.11     1.10    0.201  0.00920    0.183     0.16
-#>  9 2007-05-11      1.51     1.11     1.11    0.202  0.00926    0.184     0.16
-#> 10 2007-05-14      1.50     1.11     1.10    0.201  0.00920    0.183     0.16
-#> # … with 2,494 more rows, and 56 more variables: IEXE1101 <dbl>,
-#> #   IEXE1201 <dbl>, IEXE1401 <dbl>, IEXE1601 <dbl>, IEXE1901 <dbl>,
-#> #   IEXE2001 <dbl>, IEXE2101 <dbl>, IEXE2201 <dbl>, IEXE2301 <dbl>,
-#> #   IEXE2401 <dbl>, IEXE2501 <dbl>, IEXE2601 <dbl>, IEXE2702 <dbl>,
-#> #   IEXE2703 <dbl>, IEXE2801 <dbl>, IEXE2901 <dbl>, IEXE3001 <dbl>,
-#> #   IEXE3101 <dbl>, IEXE3201 <dbl>, IEXE3301 <dbl>, IEXE3401 <dbl>,
-#> #   IEXE3501 <dbl>, IEXE3601 <dbl>, IEXE3701 <dbl>, IEXE3801 <dbl>, …
+#> # A tibble: 16,743 × 66
+#>    date         CAD EUROCAE01 IEXE0101 IEXE0105 IEXE0301 IEXE0701 IEXE0901
+#>    <date>     <dbl>     <dbl>    <dbl>    <dbl>    <dbl>    <dbl>    <dbl>
+#>  1 1950-10-02     1        NA       NA       NA       NA       NA       NA
+#>  2 1950-10-03     1        NA       NA       NA       NA       NA       NA
+#>  3 1950-10-04     1        NA       NA       NA       NA       NA       NA
+#>  4 1950-10-05     1        NA       NA       NA       NA       NA       NA
+#>  5 1950-10-06     1        NA       NA       NA       NA       NA       NA
+#>  6 1950-10-10     1        NA       NA       NA       NA       NA       NA
+#>  7 1950-10-11     1        NA       NA       NA       NA       NA       NA
+#>  8 1950-10-12     1        NA       NA       NA       NA       NA       NA
+#>  9 1950-10-13     1        NA       NA       NA       NA       NA       NA
+#> 10 1950-10-16     1        NA       NA       NA       NA       NA       NA
+#> # ℹ 16,733 more rows
+#> # ℹ 58 more variables: IEXE1001 <dbl>, IEXE1101 <dbl>, IEXE1201 <dbl>,
+#> #   IEXE1401 <dbl>, IEXE1601 <dbl>, IEXE1901 <dbl>, IEXE2001 <dbl>,
+#> #   IEXE2101 <dbl>, IEXE2201 <dbl>, IEXE2301 <dbl>, IEXE2401 <dbl>,
+#> #   IEXE2501 <dbl>, IEXE2601 <dbl>, IEXE2702 <dbl>, IEXE2703 <dbl>,
+#> #   IEXE2801 <dbl>, IEXE2901 <dbl>, IEXE3001 <dbl>, IEXE3101 <dbl>,
+#> #   IEXE3201 <dbl>, IEXE3301 <dbl>, IEXE3401 <dbl>, IEXE3501 <dbl>, …
 ```
 
 ## also
@@ -222,6 +234,6 @@ The Bank of Canada’s API documentation explains API usage thoroughly.
 Their [website](https://www.bankofcanada.ca/) is useful for finding
 series too.
 
-[1] It’s important to note that `get_details` and `valet` make a
-distinction between grouped observations and single series. The user
-must select `group = TRUE` or valet will not return a dataset.
+[^1]: It’s important to note that `get_details` and `valet` make a
+    distinction between grouped observations and single series. The user
+    must select `group = TRUE` or valet will not return a dataset.
