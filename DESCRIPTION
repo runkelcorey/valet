@@ -11,10 +11,10 @@ Description: The Bank of Canada updated their Valet API
              and serves responses in wide format easy for researchers to
              handle but also provides tools to access API responses as a list.
 License: MIT + file LICENSE
-URL: https://runkelcorey.github.io/valet, https://runkelcorey.github.io/valet/
+URL: https://github.com/runkelcorey/valet, https://runkelcorey.github.io/valet/
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2
 Imports: 
     magrittr,
     httr,
