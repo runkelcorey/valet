@@ -1,7 +1,7 @@
 Package: valet
 Type: Package
 Title: Provide R Client to the Bank of Canada's Valet API
-Version: 0.9.0
+Version: 0.9.1
 Authors@R: c(person(given = "Corey", family = "Runkel",
              email = "runkelcorey@gmail.com", role = c("aut", "cre"),
              comment = c(ORCID = "0000-0001-8992-4434")))

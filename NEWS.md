@@ -1,3 +1,7 @@
+# valet 0.9.1
+
+* updated package URLs to comply with CRAN policies
+
 ## valet 0.9.0
 
 * added tests (#14)
